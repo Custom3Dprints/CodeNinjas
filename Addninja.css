@@ -1,0 +1,289 @@
+/* Navbar */
+.navbar{
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.navbar__container{
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    z-index: 1;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding-right:50px;
+    margin-left:0;
+}
+
+#navbar__logo{
+    background-color: #4a91c1;
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    display:flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 2rem;
+}
+
+
+.fa-gem{
+    margin-right: 0.5rem;
+}
+
+.navbar__menu{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-align: center;
+}
+
+.navbar__item{
+    height: 80px;
+}
+
+.navbar__links{
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 0 1rem;
+    height: 100%;
+}
+
+.navbar__btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 10px 20px;
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    background: #f77062;
+    color: #000000;
+}
+
+.navbar__links:hover{
+    color: #296dff;
+    transition: all 0.3s ease;
+}
+.button:hover{
+    background: #4837ff;
+    transition: all 0.3s ease;
+}
+
+
+
+@media screen and (max-width: 960px){
+    .navbar__container{
+        display: flex;
+        justify-content: space-between;
+        height: 80px;
+        z-index: 1;
+        width: 100%;
+        max-width: 1300px;
+        padding: 0;
+    }
+
+    .navbar__menu{
+        display: grid;
+        grid-template-columns: auto;
+        margin: 0;
+        width: 100%;
+        position: absolute;
+        top: -1000px;
+        opacity: 0;
+        transition: all 0.5s ease;
+        height: 50vh;
+        z-index: -1;
+        background: #ffffff;
+    }
+
+    .navbar__menu.active{
+        background: #ffffff;
+        top: 100%;
+        opacity: 1;
+        transition: all 0.5s ease;
+        z-index: 99;
+        height: 80vh;
+        font-size: 1.6rem;
+    }
+
+    #navbar__logo{
+        padding-left: 25px;
+    }
+
+    .navbar__toggle .bar{
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        transition: all 0.3s ease-in-out;
+        background: #000000;
+    }
+
+    .navbar__item{
+        width: 100%;
+    }
+
+    .navbar__links{
+        text-align: center;
+        padding: 2rem;
+        width: 100%;
+        display: table;
+    }
+
+    #mobile-menu{
+        position: absolute;
+        top: 20%;
+        right: 5%;
+        transform: translate(5%, 20%);
+    }
+
+    .navbar__btn{
+        padding-bottom: 2rem;
+    }
+
+    .button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        height: 80px;
+        margin: 0;
+    }
+
+    .navbar__toggle .bar{
+        display: block;
+        cursor: pointer;
+    }
+
+    #mobile-menu.is-active .bar:nth-child(2){
+        opacity: 0;
+    }
+    
+    #mobile-menu.is-active .bar:nth-child(1){
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    #mobile-menu.is-active .bar:nth-child(3){
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+
+
+/**/
+/* Basic reset for margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 98%;
+    width: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Style the container to use flexbox for layout */
+.container {
+    display: flex;
+    height: calc(100% - 50px); /* Adjust height to account for navbar */
+    width: 100%;
+    padding: 10px;
+    flex-direction: row;
+    justify-content: space-around; /* Add space around sections */
+    flex-wrap: wrap;
+}
+
+/* Style the sections inside the container */
+.section {
+    flex: 1;
+    padding: 40px; /* Adjust padding for better spacing */
+    margin: 10px; /* Add margin for separation */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Add a light shadow for better separation */
+    border-radius: 8px; /* Add rounded corners */
+    background-color: #f9f9f9; /* Light background color for sections */
+    min-width: 300px;
+}
+
+/* Common style for all section titles */
+.section h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+
+/* Common style for labels */
+label {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Adjust button styles for better appearance */
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: center; /* Center button horizontally */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Style inputs for consistency */
+input[type="text"], input[type="number"], select {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%; /* Full width for inputs */
+    box-sizing: border-box;
+}
+
+/* Style for Add Ninja section */
+.section:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style for Update Points section */
+.section:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style for Remove Ninja section */
+.section:nth-child(3) {
+    display: flex;
+    flex-direction: column;
+}

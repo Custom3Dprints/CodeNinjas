@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="centered-content">
+            <h2>Login</h2>
+            <input type="text" id="username" placeholder="Username" required>
+            <button onclick="login()">Login</button>
+        </div>
+    </div>
+
+  	<script>
+  	  	function login() {
+  	  	  	const username = document.getElementById('username').value;
+  	  	  	const validUsernames = ['user1', 'user2', 'user3', 'user4'];
+			
+  	  	  	if (validUsernames.includes(username)) {
+  	  	  	  	localStorage.setItem('username', username);
+  	  	  	  	window.location.href = 'Home.html';
+  	  	  	} else {
+  	  	  	  	alert('Invalid login credentials');
+  	  	  	}
+  	  	}
+  	</script>
+</body>
+</html>

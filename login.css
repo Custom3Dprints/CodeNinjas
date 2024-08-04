@@ -1,0 +1,20 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .centered-content {
+    /* Add your styling for the content here */
+    text-align: center;
+
+    padding: 20px;
+
+  }
+  

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Joke Page</title>
+</head>
+<body>
+    <h1>Random Joke Generator</h1>
+    <div id="joke-container">
+        <button id="show-joke">Show Joke</button>
+        <button id="show-answer" style="display:none;">Show Answer</button>
+        <p id="joke"></p>
+        <p id="answer" style="display:none;"></p>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js"></script>
+    <script src="config.js"></script>
+    <script>
+// Initialize Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBsMXsLI7EnmMaQl5i3SNWjJRMRlZSMOU0",
+            authDomain: "cninjas-8ab4e.firebaseapp.com",
+            projectId: "cninjas-8ab4e",
+            storageBucket: "cninjas-8ab4e.appspot.com",
+            messagingSenderId: "383516081066",
+            appId: "1:383516081066:web:a0ad2748eda603e013c9d3",
+            measurementId: "G-E8GEV2YY4G"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Get references to the HTML elements
+        const showJokeButton = document.getElementById('show-joke');
+        const showAnswerButton = document.getElementById('show-answer');
+        const jokeElement = document.getElementById('joke');
+        const answerElement = document.getElementById('answer');
+
+        let currentJoke = null;
+        let currentAnswer = null;
+
+        // Fetch a random joke from the Joke collection
+        async function fetchRandomJoke() {
+            const jokeCollection = collection(db, 'Joke');
+            const jokeSnapshot = await getDocs(jokeCollection);
+            const jokeList = jokeSnapshot.docs.map(doc => doc.data());
+        
+            if (jokeList.length > 0) {
+                const randomIndex = Math.floor(Math.random() * jokeList.length);
+                currentJoke = jokeList[randomIndex].joke;
+                currentAnswer = jokeList[randomIndex].answer;
+            
+                jokeElement.textContent = currentJoke;
+                answerElement.style.display = 'none';
+                showAnswerButton.style.display = 'inline-block';
+            } else {
+                jokeElement.textContent = 'No jokes found.';
+            }
+        }
+
+        // Show the answer to the current joke
+        function showAnswer() {
+            answerElement.textContent = currentAnswer;
+            answerElement.style.display = 'block';
+        }
+
+        // Event listeners for the buttons
+        showJokeButton.addEventListener('click', fetchRandomJoke);
+        showAnswerButton.addEventListener('click', showAnswer);
+
+    </script>
+</body>
+</html>

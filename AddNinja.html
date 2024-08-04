@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Ninja</title>
+    <link rel="stylesheet" href="Addninja.css">
+    <script type="module">
+        import { getFirestore, collection, addDoc, query, where, getDocs, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBsMXsLI7EnmMaQl5i3SNWjJRMRlZSMOU0",
+            authDomain: "cninjas-8ab4e.firebaseapp.com",
+            projectId: "cninjas-8ab4e",
+            storageBucket: "cninjas-8ab4e.appspot.com",
+            messagingSenderId: "383516081066",
+            appId: "1:383516081066:web:a0ad2748eda603e013c9d3",
+            measurementId: "G-E8GEV2YY4G"
+        };
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Gets username from login.html
+        const username = localStorage.getItem('username');
+
+        // Add Data
+        async function addData() {
+            const name = document.getElementById("addname").value;
+            const points = parseInt(document.getElementById("points").value);
+            const team = document.getElementById("team").value;
+
+            if (!username) {
+                alert("User not logged in");
+                return;
+            }
+
+            try {
+                const docRef = await addDoc(collection(db, username), {
+                    name: name,
+                    points: points,
+                    team: team
+                });
+                console.log("Document written with ID: ", docRef.id);
+            } catch (e) {
+                console.error("Error adding document: ", e);
+            }
+        }
+
+        // Update Points
+        async function Update() {
+            const name = document.getElementById('name').value.trim();
+            const pointsInput = parseInt(document.getElementById('updatepoints').value);
+
+            if (!name) {
+                alert("Please enter a name.");
+                return;
+            }
+
+            if (isNaN(pointsInput)) {
+                alert("Please enter valid points.");
+                return;
+            }
+
+            if (!username) {
+                alert("User not logged in");
+                return;
+            }
+
+            const q = query(collection(db, username), where("name", "==", name));
+            const querySnapshot = await getDocs(q);
+
+            if (querySnapshot.empty) {
+                alert("Name not found in the database.");
+                return;
+            }
+
+            querySnapshot.forEach(async (doc) => {
+                const currentPoints = parseInt(doc.data().points) || 0;
+                let updatedPoints = currentPoints + pointsInput;
+
+                if (updatedPoints < 0) {
+                    updatedPoints = 0;
+                }
+
+                try {
+                    await updateDoc(doc.ref, { points: updatedPoints });
+                } catch (error) {
+                    console.error("Error updating points: ", error);
+                    alert("Failed to update points.");
+                }
+            });
+        }
+
+        // Remove Name
+        async function removeData() {
+            const name = document.getElementById("removeName").value;
+
+            if (!username) {
+                alert("User not logged in");
+                return;
+            }
+
+            const q = query(collection(db, username), where("name", "==", name));
+            const querySnapshot = await getDocs(q);
+
+            querySnapshot.forEach(async (doc) => {
+                await deleteDoc(doc.ref);
+                console.log("Document with ID: ", doc.id, " removed.");
+            });
+        }
+
+        window.addData = addData;
+        window.Update = Update;
+        window.removeData = removeData;
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <img src="images/Logo.png">
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__">
+                    <a class="navbar__links" onclick="Home()">
+                        Home
+                    </a>
+                </li>
+                <li class="navbar__" id="Pictures">
+                    <a class="navbar__links" onclick="Ninjas()">
+                        Manage Ninjas
+                    </a>
+                </li>
+                <li class="navbar__" id="Pictures">
+                    <a class="navbar__links" onclick="Global()">
+                        Leaderboard
+                    </a>
+                </li>
+                <li class="navbar__" id="Pictures">
+                    <a class="navbar__links" onclick="Rewards()">
+                        Rewards
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="section">
+            <h1>Add Ninja</h1>
+            <label for="addname">Full Name:</label>
+            <input type="text" id="addname">
+            <br>
+            <label for="points">Points:</label>
+            <input type="number" id="points">
+            <br>
+            <label for="team">Team:</label>
+            <select id="team">
+                <option value="Tigers">Tigers</option>
+                <option value="Turtles">Turtles</option>
+                <option value="Phoenix">Phoenix</option>
+                <option value="Dragons">Dragons</option>
+            </select>
+            <br>
+            <button onclick="addData()">Add</button>
+        </div>
+
+        <div class="section">
+            <h1>Update Points</h1>
+            <br>
+            <label for="name">Full Name:</label>
+            <input type="text" id="name">
+            <br><br>
+            <label for="updatepoints">Points:</label>
+            <input type="number" id="updatepoints">
+            <br>
+            <button onclick="Update()">Update</button>
+        </div>
+
+        <div class="section">
+            <h1>Remove Ninja</h1>
+            <br>
+            <label for="removeName">Full Name:</label>
+            <input type="text" id="removeName">
+            <br>
+            <button onclick="removeData()">Remove</button>
+        </div>
+    </div>
+
+    <script src="Navbar.js"></script>
+</body>
+</html>

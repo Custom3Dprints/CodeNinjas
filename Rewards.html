@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rewards</title>
+    <link rel="stylesheet" href="Rewards.css">
+</head>
+<body>
+
+    <!--Navbar-->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <img src="images/Logo.png">
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__">
+                    <a class="navbar__links" onclick="Home()">
+                        Home
+                    </a>
+                </li>
+                <li class="navbar__" id="Pictures">
+                    <a class="navbar__links" onclick="Ninjas()">
+                        Manage Ninjas
+                    </a>
+                </li>
+                <li class="navbar__" id="Pictures">
+                    <a class="navbar__links" onclick="Global()">
+                        Leaderboard
+                    </a>
+                </li>
+                <li class="navbar__" id="Pictures">
+                    <a class="navbar__links" onclick="Rewards()">
+                        Rewards
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <section id="topTeams">
+        <div id="teamContainer"></div>
+    </section>
+
+    <div class="main">
+        <div class="left">
+
+        </div>
+        <div class="right">
+            <div id="prize-container">
+                <div class="prize-content">
+                    <h1 id="prize-title">Monthly Prize</h1>
+                    <h1 id="challenge-title">Monthly Challenge</h1>
+                </div>
+                <div class="challenge-content">
+                    <div class="image-container"><img id="prize-image" src="" alt="Prize Image"></div>
+                    <div class="content-container"><p id="prize-challenge"></p></div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+
+
+    <script src="Navbar.js"></script>
+    <script type="module" src="Rewards.js"></script>
+</body>
+</html>
+
+
+
+
+
+

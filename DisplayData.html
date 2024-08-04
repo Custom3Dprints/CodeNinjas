@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Data</title>
+    <script type="module">
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+        
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBsMXsLI7EnmMaQl5i3SNWjJRMRlZSMOU0",
+            authDomain: "cninjas-8ab4e.firebaseapp.com",
+            projectId: "cninjas-8ab4e",
+            storageBucket: "cninjas-8ab4e.appspot.com",
+            messagingSenderId: "383516081066",
+            appId: "1:383516081066:web:a0ad2748eda603e013c9d3",
+            measurementId: "G-E8GEV2YY4G"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function fetchData() {
+            const querySnapshot = await getDocs(collection(db, "users"));
+            querySnapshot.forEach((doc) => {
+                console.log(doc.id, " => ", doc.data());
+                document.body.innerHTML += `<p>${doc.id}: ${JSON.stringify(doc.data())}</p>`;
+            });
+        }
+
+        window.onload = fetchData;
+    </script>
+</head>
+<body>
+    <h1>Display Data</h1>
+</body>
+</html>

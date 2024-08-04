@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="Global.css">
+</head>
+<body>
+
+    <!--Navbar-->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <img src="images/Logo.png">
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__">
+                    <a class="navbar__links" onclick="Home()">
+                        Home
+                    </a>
+                </li>
+                <li class="navbar__">
+                    <a class="navbar__links" onclick="Ninjas()">
+                        Manage Ninjas
+                    </a>
+                </li>
+                <li class="navbar__">
+                    <a class="navbar__links" onclick="Global()">
+                        Leaderboard
+                    </a>
+                </li>
+                <li class="navbar__">
+                    <a class="navbar__links" onclick="Rewards()">
+                        Rewards
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Display Top 10 Ninjas -->
+    <section id="topTeams">
+        <div id="top5"></div>
+    </section>
+    
+    <section id="therest">
+        <div id="ninjaContainer2"></div>
+    </section>
+
+
+    <script src="Navbar.js"></script>
+    <script type="module" src="Global.js"></script>
+</body>
+</html>

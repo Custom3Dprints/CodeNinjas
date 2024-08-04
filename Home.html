@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+    <!--Navbar-->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <img src="images/Logo.png">
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__">
+                    <a class="navbar__links" onclick="Home()">
+                        Home
+                    </a>
+                </li>
+                <li class="navbar__" id="Pictures">
+                    <a class="navbar__links" onclick="Ninjas()">
+                        Manage Ninjas
+                    </a>
+                </li>
+                <li class="navbar__" id="Pictures">
+                    <a class="navbar__links" onclick="Global()">
+                        Leaderboard
+                    </a>
+                </li>
+                <li class="navbar__" id="Pictures">
+                    <a class="navbar__links" onclick="Rewards()">
+                        Rewards
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Display Top Teams -->
+    <section id="topTeams">
+        <div id="teamContainer"></div>
+    </section>
+
+    <!-- Display Top 10 Ninjas -->
+    <section id="top10Ninjas">
+        <h2>Top 10 Ninjas</h2>
+        <div id="ninjaContainer"></div>
+    </section>
+
+    <div class="joke-container">
+        <!-- Fetch Random Joke -->
+        <section class="jokeSection" id="jokeSection">
+            <h2>Joke of the Day</h2>
+            <p id="jokeText"></p>
+            <br>
+            <p style="font-weight: bold;" id="anstag"></p>
+            <p id="answerText"></p>
+            <div class="test">
+                <button class="jokeButton" onclick="fetchRandomJoke()">Show Joke</button>
+                <button class="answerButton" onclick="showAnswer()" id="answerButton">Show Answer</button>
+            </div>
+        </section>
+        
+        <!-- Add New Joke -->
+        <section class="addJoke" id="addJoke">
+            <h2>Add New Joke</h2>
+            <input type="text" id="newJokeInput" placeholder="Enter new joke">
+            <input type="text" id="newAnswerInput" placeholder="Enter answer"><br>
+            <button onclick="addNewJoke()">Add Joke</button>
+        </section>
+    </div>
+
+    <script src="Navbar.js"></script>
+    <script type="module" src="home.js"></script>
+</body>
+</html>
+
+
